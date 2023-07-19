@@ -1,13 +1,44 @@
 <html>
-<head>
+  <head>
     <title>Hello World with HTMX</title>
     <script src="https://unpkg.com/htmx.org"></script>
-</head>
-<body>
-    
-    <button hx-get="/hello" hx-target="#greeting">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <style>
+      body {
+        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        color: #fff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      button {
+        background-color: #fff;
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #f64f59;
+        color: #fff;
+      }
+      #greeting {
+        margin-top: 20px;
+        font-size: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button hx-get="/hello" hx-target="#greeting">
         <i class="fas fa-spinner fa-spin"></i> Click me
-    </button>
-    <div id="greeting"></div>
-</body>
+      </button>
+      <div id="greeting"></div>
+    </div>
+  </body>
 </html>
