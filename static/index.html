@@ -1,11 +1,11 @@
-<html>
-  <head>
-    <title>Hello World with HTMX</title>
-    <script src="https://unpkg.com/htmx.org"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<html> 
+  <head> 
+    <title>Hello World with HTMX</title> 
+    <script src="https://unpkg.com/htmx.org"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> 
     <style>
       body {
-        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); 
         color: #fff;
         font-family: Arial, sans-serif;
         display: flex;
@@ -13,6 +13,7 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
       }
       button {
         background-color: #fff;
@@ -31,14 +32,63 @@
         margin-top: 20px;
         font-size: 1.5em;
       }
+      #menu-toggle {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        font-size: 22px;
+        cursor: pointer;
+        color: #fff;
+      }
+      #slide-menu {
+        position: fixed;
+        top: 0;
+        left: -250px; /* start off the screen */
+        width: 250px;
+        height: 100%;
+        background: #333;
+        transition: left 0.3s ease;
+        color: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #slide-menu ul {
+        list-style: none;
+        padding: 0;
+      }
+      #slide-menu ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      #slide-menu.active {
+        left: 0; /* slide in */
+      }
     </style>
-  </head>
-  <body>
+  </head> 
+  <body> 
+    <button id="menu-toggle">☰ Menu</button>
+    <nav id="slide-menu">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
     <div>
-      <button hx-get="/hello" hx-target="#greeting">
-        <i class="fas fa-spinner fa-spin"></i> Click me
-      </button>
+      <button hx-get="/hello" hx-target="#greeting"> 
+        <i class="fas fa-spinner fa-spin"></i> Click me 
+      </button> 
       <div id="greeting"></div>
     </div>
-  </body>
+
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function (evt) {
+        var nav = document.getElementById('slide-menu');
+        nav.classList.toggle('active');
+        evt.preventDefault();
+      });
+    </script>
+  </body> 
 </html>
